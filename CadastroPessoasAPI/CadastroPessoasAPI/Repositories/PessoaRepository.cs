@@ -15,7 +15,21 @@ namespace CadastroPessoasAPI.Repositories
 
         public async Task<List<PessoaModel>> GetAll()
         {
-            return await _dbContext.Pessoa.ToListAsync();
+            var query = from pessoa in _dbContext.Pessoa
+                        join endereco in _dbContext.Endereco
+                            on pessoa.Id equals endereco.PessoaId into enderecoJoin
+                            select new PessoaModel
+                            {
+                                Id = pessoa.Id,
+                                CPF_CNPJ = pessoa.CPF_CNPJ,
+                                TipoPessoa = pessoa.TipoPessoa,
+                                Nome_RazaoSocial = pessoa.Nome_RazaoSocial,
+                                Telefone = pessoa.Telefone,
+                                Email = pessoa.Email,
+                                Endereco = enderecoJoin.ToList(),
+                            };
+
+            return await query.ToListAsync();
         }
 
         public async Task<PessoaModel> GetById(int id)
@@ -49,9 +63,9 @@ namespace CadastroPessoasAPI.Repositories
 
         public async Task<bool> DeleteById(int id)
         {
-            PessoaModel categoryById = await GetById(id) ?? throw new Exception("Usuário não encontrado!");
+            PessoaModel PessoaById = await GetById(id) ?? throw new Exception("Usuário não encontrado!");
 
-            _dbContext.Pessoa.Remove(categoryById);
+            _dbContext.Pessoa.Remove(PessoaById);
             await _dbContext.SaveChangesAsync();
             return true;
         }

@@ -6,7 +6,7 @@ using System.Net;
 
 namespace CadastroPessoasAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/pessoa")]
     [ApiController]
     public class PessoaController : Controller
     {
@@ -20,15 +20,10 @@ namespace CadastroPessoasAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<List<PessoaModel>>> GetAll()
         {
-            try
-            {
+            
                 List<PessoaModel> pessoa = await _pessoaRepository.GetAll();
                 return Ok(pessoa);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Houve um erro ao tratar sua solicitação.");
-            }
+          
         }
 
         [HttpGet("{id}")]
@@ -79,7 +74,7 @@ namespace CadastroPessoasAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<PessoaModel>> DeleteCategory([BindRequired] int id)
+        public async Task<ActionResult<PessoaModel>> DeleteEndereco([BindRequired] int id)
         {
             try
             {

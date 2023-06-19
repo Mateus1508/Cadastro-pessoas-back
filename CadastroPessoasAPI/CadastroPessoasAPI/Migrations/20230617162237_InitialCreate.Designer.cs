@@ -4,6 +4,7 @@ using CadastroPessoasAPI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CadastroPessoasAPI.Migrations
 {
     [DbContext(typeof(CadastroDbContext))]
-    partial class CadastroDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230617162237_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,10 +38,8 @@ namespace CadastroPessoasAPI.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<string>("CEP")
-                        .IsRequired()
-                        .HasMaxLength(9)
-                        .HasColumnType("nvarchar(9)");
+                    b.Property<int>("CEP")
+                        .HasColumnType("int");
 
                     b.Property<string>("Cidade")
                         .IsRequired()

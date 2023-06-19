@@ -2,11 +2,13 @@
 
 namespace CadastroPessoasAPI.Repositories.Interfaces
 {
-    public interface IEnderecoRepository 
+    public interface IEnderecoRepository
     {
+        Task<List<EnderecoModel>> GetAll();
+
         Task<EnderecoModel> GetById(int id);
 
-        Task<EnderecoModel> UpdateEndereco(EnderecoModel endereco, int id);
+        Task<List<EnderecoModel>> GetByPessoaId(int pessoaId);
 
         Task<bool> DeleteById(int id);
     }

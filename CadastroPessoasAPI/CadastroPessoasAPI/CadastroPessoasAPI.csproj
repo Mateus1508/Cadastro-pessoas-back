@@ -11,6 +11,10 @@
     <Compile Remove="Migrations\20230616231251_InitialMigration.Designer.cs" />
     <Compile Remove="Migrations\20230617020436_Add-pesoaId.cs" />
     <Compile Remove="Migrations\20230617020436_Add-pesoaId.Designer.cs" />
+    <Compile Remove="Migrations\20230617024826_fix-columns.cs" />
+    <Compile Remove="Migrations\20230617024826_fix-columns.Designer.cs" />
+    <Compile Remove="Migrations\20230617162237_InitialCreate.cs" />
+    <Compile Remove="Migrations\20230617162237_InitialCreate.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

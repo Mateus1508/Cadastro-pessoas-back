@@ -6,8 +6,6 @@ using System.Net;
 
 namespace CadastroPessoasAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class EnderecoController : Controller
     {
         private readonly IEnderecoRepository _enderecoRepository;
@@ -17,12 +15,12 @@ namespace CadastroPessoasAPI.Controllers
             _enderecoRepository = enderecoRepository;
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<List<EnderecoModel>>> GetById([BindRequired] int id)
+        [HttpGet]
+        public async Task<ActionResult<List<EnderecoModel>>> GetAll()
         {
             try
             {
-                EnderecoModel endereco = await _enderecoRepository.GetById(id);
+                List<EnderecoModel> endereco = await _enderecoRepository.GetAll();
                 return Ok(endereco);
             }
             catch (Exception ex)
@@ -30,15 +28,17 @@ namespace CadastroPessoasAPI.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError, "Houve um erro ao tratar sua solicitação.");
             }
         }
-
-
-        [HttpPut("{id}")]
-        public async Task<ActionResult<EnderecoModel>> UpdateItem([FromBody] EnderecoModel enderecoModel, int id)
+        
+        [HttpGet("{pessoaId}")]
+        public async Task<ActionResult<List<EnderecoModel>>> GetByPessoaId([BindRequired] int pessoaId)
         {
             try
             {
-                enderecoModel.Id = id;
-                EnderecoModel endereco = await _enderecoRepository.UpdateEndereco(enderecoModel, id);
+                List<EnderecoModel> endereco = await _enderecoRepository.GetByPessoaId(pessoaId);
+                if (endereco == null)
+                {
+                    return NotFound("Categoria não encontrada.");
+                }
                 return Ok(endereco);
             }
             catch (Exception ex)
@@ -48,12 +48,13 @@ namespace CadastroPessoasAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<EnderecoModel>> DeleteCategory([BindRequired] int id)
+        public async Task<ActionResult<EnderecoModel>> DeleteEndereco([BindRequired] int id)
         {
             try
+
             {
-                bool deletedCategory = await _enderecoRepository.DeleteById(id);
-                return Ok(deletedCategory);
+                bool deletedEndereco = await _enderecoRepository.DeleteById(id);
+                return Ok(deletedEndereco);
             }
             catch (Exception ex)
             {

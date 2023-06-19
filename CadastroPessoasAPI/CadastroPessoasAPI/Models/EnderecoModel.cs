@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection.Metadata;
 using System.Text.Json.Serialization;
 
 namespace CadastroPessoasAPI.Models
@@ -8,20 +9,14 @@ namespace CadastroPessoasAPI.Models
     public class EnderecoModel
     {
 
-        public EnderecoModel()
-        {
-            Pessoa = new Collection<PessoaModel>();
-        }
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [JsonIgnore]
         public int Id { get; set; }
 
-        [JsonIgnore]
-        public ICollection<PessoaModel>? Pessoa { get; set; }
+        public int PessoaId { get; set; }
 
-        public int PessoaId { get; set;}
+        [JsonIgnore]
+        public PessoaModel? Pessoa { get; set; }
 
         [Required]
         public string TipoEndereco { get; set; }
@@ -30,7 +25,6 @@ namespace CadastroPessoasAPI.Models
         [StringLength(200)]
         public string Endereco { get; set; }
 
-        [StringLength(10)]
         public int? Numero { get; set; }
 
         [StringLength(300)]
@@ -41,8 +35,8 @@ namespace CadastroPessoasAPI.Models
         public string Bairro { get; set; }
 
         [Required]
-        [StringLength(8)]
-        public int CEP { get; set; }
+        [StringLength(9)]
+        public string CEP { get; set; }
 
         [Required]
         [StringLength(200)]

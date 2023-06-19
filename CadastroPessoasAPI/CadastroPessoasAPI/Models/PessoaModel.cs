@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.Extensions.Hosting;
+using Microsoft.VisualBasic;
+using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
@@ -6,8 +9,12 @@ namespace CadastroPessoasAPI.Models
 {
     public class PessoaModel
     {
+
+        public PessoaModel() {
+            Endereco = new Collection<EnderecoModel>();
+        }    
+
         [Key]
-        [JsonIgnore]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
@@ -30,7 +37,7 @@ namespace CadastroPessoasAPI.Models
         [EmailAddress]
         public string? Email { get; set; }
 
-        [JsonIgnore]
-        public EnderecoModel? Endereco { get; set; }
+        [Required]
+        public ICollection<EnderecoModel> Endereco { get; set; }
     }
 }

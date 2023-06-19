@@ -17,7 +17,7 @@ builder.Services.AddDbContext<CadastroDbContext>(
     );
 
  builder.Services.AddScoped<IPessoaRepository, PessoaRepository>();
- builder.Services.AddScoped<IEnderecoRepository, EnderecoRepository>();
+ builder.Services.AddScoped<IEnderecoRepository,EnderecoRepository>();
 
 var app = builder.Build();
 
@@ -31,6 +31,13 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors(builder =>
+{
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+});
 
 app.MapControllers();
 
