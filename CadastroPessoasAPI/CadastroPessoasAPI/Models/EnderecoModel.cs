@@ -16,7 +16,7 @@ namespace CadastroPessoasAPI.Models
         public int PessoaId { get; set; }
 
         [JsonIgnore]
-        public PessoaModel? Pessoa { get; set; }
+        public PessoaModel Pessoa { get; set; }
 
         [Required]
         public string TipoEndereco { get; set; }
