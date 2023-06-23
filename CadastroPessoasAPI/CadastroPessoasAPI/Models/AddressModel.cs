@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Metadata;
 using System.Text.Json.Serialization;
 
-namespace CadastroPessoasAPI.Models
+namespace CadastroPersonsAPI.Models
 {
-    public class EnderecoModel
+    public class AddressModel
     {
 
         [Key]
@@ -16,14 +16,14 @@ namespace CadastroPessoasAPI.Models
         public int PessoaId { get; set; }
 
         [JsonIgnore]
-        public PessoaModel? Pessoa { get; set; }
+        public PersonModel? Person { get; set; }
 
         [Required]
-        public string TipoEndereco { get; set; }
+        public string TipoAddress { get; set; }
 
         [Required]
         [StringLength(200)]
-        public string Endereco { get; set; }
+        public string Address { get; set; }
 
         public int? Numero { get; set; }
 
@@ -36,7 +36,7 @@ namespace CadastroPessoasAPI.Models
 
         [Required]
         [StringLength(9)]
-        public string CEP { get; set; }
+        public string Cep { get; set; }
 
         [Required]
         [StringLength(200)]

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace CadastroPessoasAPI.Migrations
+namespace CadastroPersonsAPI.Migrations
 {
     /// <inheritdoc />
     public partial class InitiallMigration : Migration
@@ -11,8 +11,8 @@ namespace CadastroPessoasAPI.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "CEP",
-                table: "Endereco",
+                name: "Cep",
+                table: "Address",
                 type: "nvarchar(9)",
                 maxLength: 9,
                 nullable: false,
@@ -24,8 +24,8 @@ namespace CadastroPessoasAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<int>(
-                name: "CEP",
-                table: "Endereco",
+                name: "Cep",
+                table: "Address",
                 type: "int",
                 nullable: false,
                 oldClrType: typeof(string),

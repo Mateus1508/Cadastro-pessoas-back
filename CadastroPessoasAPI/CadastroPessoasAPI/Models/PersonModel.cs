@@ -5,13 +5,13 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace CadastroPessoasAPI.Models
+namespace CadastroPersonsAPI.Models
 {
-    public class PessoaModel
+    public class PersonModel
     {
 
-        public PessoaModel() {
-            Endereco = new Collection<EnderecoModel>();
+        public PersonModel() {
+            Address = new Collection<AddressModel>();
         }    
 
         [Key]
@@ -20,10 +20,10 @@ namespace CadastroPessoasAPI.Models
 
         [Required]
         [StringLength(14)]
-        public string CPF_CNPJ { get; set; }
+        public string Cpf_cnpj { get; set; }
 
         [Required]
-        public string TipoPessoa { get; set; }
+        public string TipoPerson { get; set; }
 
         [Required]
         [StringLength(150)]
@@ -38,6 +38,6 @@ namespace CadastroPessoasAPI.Models
         public string? Email { get; set; }
 
         [Required]
-        public ICollection<EnderecoModel> Endereco { get; set; }
+        public ICollection<AddressModel> Address { get; set; }
     }
 }

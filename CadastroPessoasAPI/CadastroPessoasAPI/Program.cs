@@ -1,6 +1,6 @@
-using CadastroPessoasAPI;
-using CadastroPessoasAPI.Repositories;
-using CadastroPessoasAPI.Repositories.Interfaces;
+using CadastroPersonsAPI;
+using CadastroPersonsAPI.Repositories;
+using CadastroPersonsAPI.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,12 +12,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<CadastroDbContext>(
+builder.Services.AddDbContext<RegisterDbContext>(
         options => options.UseSqlServer(builder.Configuration.GetConnectionString("Database"))
     );
 
- builder.Services.AddScoped<IPessoaRepository, PessoaRepository>();
- builder.Services.AddScoped<IEnderecoRepository,EnderecoRepository>();
+ builder.Services.AddScoped<IPersonRepository, PersonRepository>();
+ builder.Services.AddScoped<IAddressRepository,AddressRepository>();
 
 var app = builder.Build();
 
