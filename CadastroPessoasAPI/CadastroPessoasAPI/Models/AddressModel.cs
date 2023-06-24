@@ -19,11 +19,11 @@ namespace CadastroPersonsAPI.Models
         public PersonModel? Person { get; set; }
 
         [Required]
-        public string TipoAddress { get; set; }
+        public string TipoEndereco { get; set; }
 
         [Required]
         [StringLength(200)]
-        public string Address { get; set; }
+        public string Endereco { get; set; }
 
         public int? Numero { get; set; }
 
