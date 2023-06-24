@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Controle_de_pedidos.Models
 {
@@ -15,6 +17,8 @@ namespace Controle_de_pedidos.Models
         public int ProdutoId { get; set; }
         public ICollection<ProdutosModel> Produto { get; set; }
         public int Quantidade { get; set;}
+
+        [Column(TypeName = "decimal(9,2)")]
         public decimal Valor { get; set;}
     }
 }

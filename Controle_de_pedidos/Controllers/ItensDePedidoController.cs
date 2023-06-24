@@ -1,12 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Controle_de_pedidos.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Controle_de_pedidos.Controllers
 {
+    [Route("api/itens")]
+    [ApiController]
     public class ItensDePedidoController : Controller
     {
-        public IActionResult Index()
+        private readonly IItensDePedidoRepository _itensDePedidosRepository;
+
+        public ItensDePedidoController(IItensDePedidoRepository iTensDePedidosRepository)
         {
-            return View();
+            _itensDePedidosRepository = iTensDePedidosRepository;
         }
     }
 }

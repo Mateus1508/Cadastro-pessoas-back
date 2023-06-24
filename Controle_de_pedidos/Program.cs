@@ -1,8 +1,17 @@
+using Controle_de_pedidos;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<ControlePedidosDbContext>(
+        options => options.UseSqlServer(builder.Configuration.GetConnectionString("Database"))
+    );
+
+ //builder.Services.AddScoped<IPessoaRepository, PessoaRepository>();
 
 var app = builder.Build();
 
@@ -17,6 +26,12 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
+app.UseCors(builder =>
+{
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+});
 
 app.MapControllerRoute(
     name: "default",

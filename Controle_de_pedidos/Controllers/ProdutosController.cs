@@ -1,12 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Controle_de_pedidos.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Controle_de_pedidos.Controllers
 {
+    [Route("api/produtos")]
+    [ApiController]
     public class ProdutosController : Controller
     {
-        public IActionResult Index()
+        private readonly IProdutosRepository _produtosRepository;
+
+        public ProdutosController(IProdutosRepository produtosRepository)
         {
-            return View();
+            _produtosRepository = produtosRepository;
         }
     }
 }
