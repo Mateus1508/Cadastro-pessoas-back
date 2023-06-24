@@ -25,7 +25,7 @@ namespace CadastroPersonsAPI.Controllers
                 List<AddressModel> endereco = await _enderecoRepository.GetAll();
                 return Ok(endereco);
             }
-            catch (ExCeption ex)
+            catch (Exception ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, "Houve um erro ao tratar sua solicitação.");
             }
@@ -43,7 +43,7 @@ namespace CadastroPersonsAPI.Controllers
                 }
                 return Ok(endereco);
             }
-            catch (ExCeption ex)
+            catch (Exception ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, "Houve um erro ao tratar sua solicitação.");
             }
@@ -58,7 +58,7 @@ namespace CadastroPersonsAPI.Controllers
                 bool deletedAddress = await _enderecoRepository.DeleteById(id);
                 return Ok(deletedAddress);
             }
-            catch (ExCeption ex)
+            catch (Exception ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, "Houve um erro ao tratar sua solicitação.");
             }
