@@ -38,7 +38,7 @@ namespace CadastroPersonsAPI.Controllers
                 }
                 return Ok(pessoa);
             }
-            catch (ExCeption ex)
+            catch (Exception ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, "Houve um erro ao tratar sua solicitação.");
             }
@@ -52,7 +52,7 @@ namespace CadastroPersonsAPI.Controllers
                 PersonModel pessoa = await _pessoaRepository.AddPerson(pessoaModel);
                 return Ok(pessoa.Id);
             }
-            catch (ExCeption ex)
+            catch (Exception ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, "Houve um erro ao tratar sua solicitação.");
             }
@@ -76,7 +76,7 @@ namespace CadastroPersonsAPI.Controllers
                 bool deletedPerson = await _pessoaRepository.DeleteById(id);
                 return Ok(deletedPerson);
             }
-            catch (ExCeption ex)
+            catch (Exception ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, "Houve um erro ao tratar sua solicitação.");
             }
